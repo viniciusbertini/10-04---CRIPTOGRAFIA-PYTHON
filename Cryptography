@@ -1,0 +1,141 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "toc_visible": true,
+      "authorship_tag": "ABX9TyPtUWFYJVBVyHbSakzYI0um"
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Cryptography"
+      ],
+      "metadata": {
+        "id": "1N_HB7p90kGB"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "id": "VZ_TiLs00Atp",
+        "outputId": "c93f1beb-60d4-4a1b-fa9b-82cfdd7f8e11"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'Criptografia com Chave Simétrica (AES - cryptography)'"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "string"
+            }
+          },
+          "metadata": {},
+          "execution_count": 1
+        }
+      ],
+      "source": [
+        "\"\"\"Criptografia com Chave Simétrica (AES - cryptography)\"\"\"\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from cryptography.fernet import Fernet"
+      ],
+      "metadata": {
+        "id": "amr-HIkj0HiD"
+      },
+      "execution_count": 2,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "chave = Fernet.generate_key()\n",
+        "fernet = Fernet(chave)"
+      ],
+      "metadata": {
+        "id": "dwuyfCOc0MBX"
+      },
+      "execution_count": 3,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "mensagem = \"Vinícius Batista Bertini Conceição\""
+      ],
+      "metadata": {
+        "id": "2B3YcszP0RhA"
+      },
+      "execution_count": 4,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "mensagem_criptografada = fernet.encrypt(mensagem.encode())\n",
+        "print(\"Criptografado:\", mensagem_criptografada)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yjJh4pa50ayI",
+        "outputId": "5f2ae156-cc8b-487a-d2c1-ddfbb332d5b3"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Criptografado: b'gAAAAABn9v5jmzXp87F2ZhqVumPjLUOERe8wEvlE90CpAi9bDDDTeYzMi3oHuHfYYCKjtnu2lQQmaL_KVVefXObjePX-lP38BhWLz97avCnZTcYLL0YSlyMdEKvKz9maLTeslZdqCyg6'\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "mensagem_original = fernet.decrypt(mensagem_criptografada).decode()\n",
+        "print(\"Original:\", mensagem_original)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "9HHQEN8X0fFf",
+        "outputId": "44b2e110-2c6e-43b0-ec69-9f55465754d4"
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Original: Vinícius Batista Bertini Conceição\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
